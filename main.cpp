@@ -1,182 +1,107 @@
 #include <iostream>
-#include "header.h"
-#include "header1.h"
-#include "header2.h"
-#include "header3.h"
+#include "keeper.h"
+#include "samolet.h"
+#include "cars.h"
+#include "trains.h"
 using namespace std;
-template <class T>
-void Qu(T* q, int n_q)
-{
-    int key;
-    int flag = 1;
-    int value;
-    int nomer = 0;
-    int total = 0;
-    int number;
-    int copiya = 0;
-    while (flag == 1)
-    {
-        cout << "1 - Add element" << endl;
-        cout << "2 - Delete element" << endl;
-        cout << "3 - Show queue" << endl;
-        cout << "4 - MyVariant" << endl;
-        cout << "5 - Copy queue" << endl;
-        cout << "6 - Amalganation and show" << endl;
-        cout << "7 - Exit" << endl;
-        cout << "Choose: ";
-        cin >> key;
-        switch (key)
-        {
-            case 1:
-                cout << "Enter value: ";
-                cin >> value;
-                q[nomer].add(value);
-                cout << "Value added.\n " << endl;
-                break;
-            case 2: 
-                if (q[nomer].empty())
-                {
-                        cout << "Queue is empty.\n " << endl;
-                        system("pause");
-                        break;
-                }
-                else
-                {
-                        value = q[nomer].del();
-                        cout << "Delete element: " << value << endl;
-                        cout << "\n";
-                }
-                break;
-            case 3: 
-                if (q[nomer].empty())
-                {
-                    cout << "Queue is empty.\n" << endl;
-                    system("pause");
-                    break;
-                }
-                else
-                {
-                    q[nomer].show();
-                    cout << "\n";
-                }
-                break;
-            case 4:
-                if (q[nomer].empty())
-                {
-                    cout << "Queue is empty.\n" << endl;
-                    system("pause");
-                    break;
-                }
-                else
-                {
-                    total = q[nomer].zad();
-                    cout << "Minimal element: " << total << endl;
-                    cout << "\n";
-                }
-                break;
-            case 5:
-                if (q[nomer].empty())
-                {
-                    cout << "Queue is empty.\n" << endl;
-                    system("pause");
-                    break;
-                }
-                else
-                {
-                    cout << "The number of queue is: ";
-                    cin >> copiya;
-                    if (1 == n_q || copiya == nomer)
-                    {
-                        cout << "Amount of queues is only 1.\n" << endl;
-                        system("pause");
-                        break;
-                    }
-                    q[copiya].copy(q[nomer]);
-                    cout << "Copied.\n" << endl;
-                }
-                break;
-            case 6:
-                if (n_q == 1)
-                {
-                    cout << "Amount of queues is only 1.\n" << endl;
-                    system("pause");
-                    break;
-                }
-                else
-                {
-                    cout << "Choose queue: ";
-                    cin >> number;
-                    if ((number < 0) || (number >= n_q) || (number == nomer))
-                    {
-                        cout << "Incorrect value.\n" << endl;
-                        system("pause");
-                        break;
-                    }
-                    if (q[number].empty())
-                    {
-                        cout << "The second queue is empty.\n" << endl;
-                        system("pause");
-                        break;
-                    }
-                    q[nomer].amal(q[number]);
-                    cout << "\n";
-                }
-                break;
-            case 7:
-                exit(1);
-                break;
-            default:
-                cout << "Error" << endl;
-                break;
-        }
-    }
-}
-int main()
-{
-    int amount_queues = 0; //количество очередей
-    int key;
-    int flag = 1;
-    private_queue* q1 = NULL;
-    protected_queue* q2 = NULL;
-    public_queue* q3 = NULL;
-    cout << "Enter amount of queues: ";
-    do
-    {
-        cin >> amount_queues;
-    } while (amount_queues <= 0 && cout << "Incorrect value\n" && cout << "Enter amount of queues: ");
-    cout << "Choose access mode: " << endl;
-    while (flag == 1)
-    {
-        cout << "1 - Private" << endl;
-        cout << "2 - Protected" << endl;
-        cout << "3 - Publiuc" << endl;
-        cout << "0 - Exit" << endl;
-        cout << "Choose: ";
-        cin >> key;
-        switch (key)
-        {
-        case 1:
-            q1 = new private_queue[amount_queues];
-            Qu(q1, amount_queues);
-            delete[] q1;
-            break;
-        case 2:
-            q2 = new protected_queue[amount_queues];
-            Qu(q2, amount_queues);
-            delete[] q2;
-            break;
-        case 3:
-            q3 = new public_queue[amount_queues];
-            Qu(q3, amount_queues);
-            delete[] q3;
-            break;
-        case 0:
-            flag = 0;
-            break;
-        default:
-            cout << "Error" << endl;
+int main() {
+    Keeper keeper;
+    int choice;
+
+    do {
+        cout << "1. Add airplane\n";
+        cout << "2. Add car\n";
+        cout << "3. Add train\n";
+        cout << "4. Show all cargo transportation\n";
+        cout << "5. Delete cargo transportation\n";
+        cout << "6. Save to file\n";
+        cout << "7. Download from file\n";
+        cout << "8. Edit an entry\n";
+        cout << "0. Exit\n";
+        cin >> choice;
+
+        switch (choice) {
+        case 1: {
+            string name, type, obem, size, cities;
+            cout << "Enter name of the airplane: ";
+            cin.ignore();
+            getline(cin, name);
+            cout << "Enter type: ";
+            getline(cin, type);
+            cout << "Enter cargo volume: ";
+            getline(cin, obem);
+            cout << "Enter size of airplane: ";
+            getline(cin, size);
+            cout << "Enter which cities the plane visits: ";
+            getline(cin, cities);
+            keeper.addGruz(new Samolet(name, type, obem, size, cities));
             break;
         }
-    }
+        case 2: {
+            string name, god, mark, ch, volume;
+            cout << "Enter model of the car: ";
+            cin.ignore();
+            getline(cin, name);
+            cout << "Enter the year of release: ";
+            getline(cin, god);
+            cout << "Enter mark: ";
+            getline(cin, mark);
+            cout << "Enter the delivery cities/number of delivery hours: ";
+            getline(cin, ch);
+            cout << "Enter cargo volume: ";
+            getline(cin, volume);
+            keeper.addGruz(new Cars(name, god, mark, ch, volume));
+            break;
+        }
+        case 3: {
+            string name, year, trail, sum, bulk;
+            cout << "Enter name of the train: ";
+            cin.ignore();
+            getline(cin, name);
+            cout << "Enter the year of release: ";
+            getline(cin, year);
+            cout << "Enter route: ";
+            getline(cin, trail);
+            cout << "Enter the number of wagons: ";
+            getline(cin, sum);
+            cout << "Enter cargo volume: ";
+            getline(cin, bulk);
+            keeper.addGruz(new Trains(name, year, trail, sum, bulk));
+            break;
+        }
+        case 4:
+            keeper.showAll();
+            break;
+        case 5: {
+            int index;
+            cout << "Enter index of the cargo transportation to delete: ";
+            cin >> index;
+            keeper.removeGruz(index - 1);
+            break;
+        }
+        case 6: {
+            string filename;
+            cout << "Enter file's name to save cargo transportations: ";
+            cin >> filename;
+            keeper.saveToFile(filename);
+            break;
+        }
+        case 7: {
+            string filename;
+            cout << "Enter file's name to download cargo transportations: ";
+            cin >> filename;
+            keeper.loadFromFile(filename);
+            break;
+        }
+        case 8: {
+            int index;
+            cout << "Enter index of the cargo transportation to edit: ";
+            cin >> index;
+            keeper.rename(index - 1);
+            break;
+        }
+        }
+    } while (choice != 0);
+
     return 0;
 }
