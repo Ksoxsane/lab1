@@ -1,6 +1,6 @@
 #include "trains.h"
 using namespace std;
-void Trains::saveToFile(ofstream& file) {
+void Trains::save(ofstream& file) {
     file << fullName << "\n";
     file << year << "\n";
     file << trail << "\n";
@@ -9,7 +9,7 @@ void Trains::saveToFile(ofstream& file) {
 
 }
 
-void Trains::loadFromFile(ifstream& file) {
+void Trains::load(ifstream& file) {
     getline(file, fullName);
     getline(file, year);
     getline(file, trail);
@@ -38,7 +38,7 @@ void Trains::menu() {
             cout << "Enter new name: ";
             cin.ignore();
             getline(cin, newName);
-            setFullName(newName);
+            setName(newName);
             break;
         }
         case 3: {
@@ -70,7 +70,7 @@ void Trains::menu() {
 }
 
 void Trains::show() const {
-    cout << "Trains:\n";
+    cout << "Train\n";
     cout << "Name: " << fullName << "\n";
     cout << "The year of release: " << year << "\n";
     cout << "Route: " << trail << "\n";

@@ -1,6 +1,6 @@
 #include "cars.h"
 using namespace std;
-void Cars::saveToFile(ofstream& file) {
+void Cars::save(ofstream& file) {
     file << fullName << "\n";
     file << god << "\n";
     file << mark << "\n";
@@ -9,7 +9,7 @@ void Cars::saveToFile(ofstream& file) {
 
 }
 
-void Cars::loadFromFile(ifstream& file) {
+void Cars::load(ifstream& file) {
     getline(file, fullName);
     getline(file, god);
     getline(file, mark);
@@ -25,7 +25,7 @@ void Cars::menu() {
         cout << "3. Change the year of release\n";
         cout << "4. Change mark\n";
         cout << "5. Change the delivery cities/number of delivery hours\n";
-        cout << "6. Change volume of bаggage\n";
+        cout << "6. Change volume of baggage\n";
         cout << "0. Exit\n";
         cin >> choice;
 
@@ -34,11 +34,11 @@ void Cars::menu() {
             show();
             break;
         case 2: {
-            string newName;
+            string newModel;
             cout << "Enter new model: ";
             cin.ignore();
-            getline(cin, newName);
-            setFullName(newName);
+            getline(cin, newModel);
+            setName(newModel);
             break;
         }
         case 3: {
@@ -70,7 +70,7 @@ void Cars::menu() {
 }
 
 void Cars::show() const {
-    cout << "Car:\n";
+    cout << "Car\n";
     cout << "Model: " << fullName << "\n";
     cout << "The year of release: " << god << "\n";
     cout << "Mark: " << mark << "\n";

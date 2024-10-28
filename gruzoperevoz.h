@@ -9,26 +9,24 @@ using namespace std;
 
 class Gruzoperevoz {
 protected:
-    string fullName;  // Для Speaker и Administration
+    string fullName;
 public:
     Gruzoperevoz() : fullName("Unnamed") {}
     Gruzoperevoz(const string& name) : fullName(name) {}
     virtual ~Gruzoperevoz() {}
 
-    // Виртуальные функции для наследников
-    virtual void saveToFile(ofstream& file) = 0;
-    virtual void loadFromFile(ifstream& file) = 0;
-    virtual void menu() = 0;  // Меню, которое будет различным для каждого наследника
-
+    virtual void save(ofstream& file) = 0;
+    virtual void load(ifstream& file) = 0;
+    virtual void menu() = 0;
     virtual void show() const {
         cout << "Full Name: " << fullName << endl;
     }
 
-    void setFullName(const string& name) {
+    void setName(const string& name) {
         fullName = name;
     }
 
-    string getFullName() const {
+    string getName() const {
         return fullName;
     }
 };

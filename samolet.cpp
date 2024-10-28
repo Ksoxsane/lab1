@@ -1,6 +1,6 @@
 #include "samolet.h"
 using namespace std;
-void Samolet::saveToFile(ofstream& file) {
+void Samolet::save(ofstream& file) {
     file << fullName << "\n";
     file << type << "\n";
     file << obem << "\n";
@@ -8,7 +8,7 @@ void Samolet::saveToFile(ofstream& file) {
     file << cities << "\n";
 }
 
-void Samolet::loadFromFile(ifstream& file) {
+void Samolet::load(ifstream& file) {
     getline(file, fullName);
     getline(file, type);
     getline(file, obem);
@@ -37,7 +37,7 @@ void Samolet::menu() {
             cout << "Enter new name: ";
             cin.ignore();
             getline(cin, newName);
-            setFullName(newName);
+            setName(newName);
             break;
         }
         case 3: {

@@ -1,0 +1,18 @@
+[samolet]
+äë¢
+tip
+1000
+100
+SPb
+[cars]
+BMW
+2004
+Puma
+Moscow 15 SPb 14
+5000
+[trains]
+Thomas
+2015
+SPb -> Moscow
+52
+10000

@@ -14,8 +14,8 @@ public:
     Trains(const string& name, const string& years, const string& traila, const string& suma, const string& bulki)
         : Gruzoperevoz(name), year(years), trail(traila), sum(suma), bulk(bulki) {}
 
-    void saveToFile(ofstream& file) override;
-    void loadFromFile(ifstream& file) override;
+    void save(ofstream& file) override;
+    void load(ifstream& file) override;
     void menu() override;
     void show() const override;
 };

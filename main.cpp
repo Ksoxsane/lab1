@@ -70,7 +70,7 @@ int main() {
             break;
         }
         case 4:
-            keeper.showAll();
+            keeper.show();
             break;
         case 5: {
             int index;
@@ -83,21 +83,21 @@ int main() {
             string filename;
             cout << "Enter file's name to save cargo transportations: ";
             cin >> filename;
-            keeper.saveToFile(filename);
+            keeper.save(filename);
             break;
         }
         case 7: {
             string filename;
             cout << "Enter file's name to download cargo transportations: ";
             cin >> filename;
-            keeper.loadFromFile(filename);
+            keeper.load(filename);
             break;
         }
         case 8: {
             int index;
             cout << "Enter index of the cargo transportation to edit: ";
             cin >> index;
-            keeper.rename(index - 1);
+            keeper.edit(index - 1);
             break;
         }
         }

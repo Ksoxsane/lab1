@@ -15,10 +15,10 @@ public:
 
     void addGruz(Gruzoperevoz* gruzoperevoz);
     void removeGruz(int index);
-    void showAll() const;
-    void saveToFile(const string& filename);
-    void loadFromFile(const string& filename);
-    void rename(int index);
+    void show() const;
+    void save(const string& filename);
+    void load(const string& filename);
+    void edit(int index);
     void clear();
 };
 

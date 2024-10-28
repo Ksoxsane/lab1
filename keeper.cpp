@@ -41,14 +41,14 @@ void Keeper::removeGruz(int index) {
     --counter;
 }
 
-void Keeper::showAll() const {
+void Keeper::show() const {
     for (int i = 0; i < counter; ++i) {
         gruzi[i]->show();
         cout << "-----------------------\n";
     }
 }
 
-void Keeper::saveToFile(const string& filename) {
+void Keeper::save(const string& filename) {
     ofstream file(filename, ios::trunc);
     if (!file) {
         cerr << "Error opening a file for writing.\n";
@@ -63,14 +63,14 @@ void Keeper::saveToFile(const string& filename) {
         } else if (dynamic_cast<Trains*>(gruzi[i])) {
             file << "[trains]\n";
         }
-        gruzi[i]->saveToFile(file);
+        gruzi[i]->save(file);
     }
 
     file.close();
     cout << "Saved.\n";
 }
 
-void Keeper::loadFromFile(const string& filename) {
+void Keeper::load(const string& filename) {
     ifstream file(filename);
     if (!file) {
         cerr << "Error opening the file for reading.\n";
@@ -89,7 +89,7 @@ void Keeper::loadFromFile(const string& filename) {
             gruzoperevoz = new Trains();
         }
         if (gruzoperevoz) {
-            gruzoperevoz->loadFromFile(file);
+            gruzoperevoz->load(file);
             addGruz(gruzoperevoz);
         }
     }
@@ -98,7 +98,7 @@ void Keeper::loadFromFile(const string& filename) {
 
 }
 
-void Keeper::rename(int index){
+void Keeper::edit(int index){
     if (index < 0 || index >= counter) {
         cerr << "Invalid index.\n";
         return;

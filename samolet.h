@@ -14,8 +14,8 @@ public:
     Samolet(const string& name, const string& tip, const string& V, const string& razmer, const string& towns)
         : Gruzoperevoz(name), type(tip), obem(V), size(razmer), cities(towns) {}
 
-    void saveToFile(ofstream& file) override;
-    void loadFromFile(ifstream& file) override;
+    void save(ofstream& file) override;
+    void load(ifstream& file) override;
     void menu() override;
     void show() const override;
 };
